@@ -22,7 +22,7 @@
     </ul>
   </nav>
 
-  <!-- ══ HOME ══ -->
+  <!-- HOME -->
   <section id="home" class="page active">
     <div class="home-layout">
       <div class="home-content">
@@ -43,17 +43,15 @@
           <a class="btn btn-accent" href="#" onclick="showPage('cartoons')">See Cartoons</a>
           <a class="btn" href="#" onclick="showPage('games')">See Games</a>
           <a class="btn" href="#" onclick="showPage('professional')">Professional</a>
-          <a class="btn" href="mailto:rhys.banerjee@gmail.com">Work With Me ✉</a>
+          <a class="btn" href="mailto:rhys.banerjee@gmail.com">Contact Me ✉</a>
         </div>
       </div>
-
       <div class="home-portrait-col">
         <div class="portrait-frame">
           <img src="images/portrait.png" alt="Rhys Banerjee" class="portrait-img" />
         </div>
       </div>
     </div>
-
     <div class="social-strip">
       <a class="social-link" href="https://github.com/Rhys-Banerjee" target="_blank">GitHub</a>
       <a class="social-link" href="https://www.instagram.com/ban.vault" target="_blank">@ban.vault</a>
@@ -61,7 +59,6 @@
       <a class="social-link" href="https://riceban.itch.io" target="_blank">Itch.io</a>
       <a class="social-link" href="mailto:rhys.banerjee@gmail.com">Email</a>
     </div>
-
     <footer>
       <span class="footer-name">Rhys Banerjee</span>
       <div class="footer-links">
@@ -72,56 +69,35 @@
     </footer>
   </section>
 
-  <!-- ══ CARTOONS ══ -->
+  <!-- CARTOONS -->
   <section id="cartoons" class="page">
     <div class="section-header">
       <p class="section-number">02 — Cartoons</p>
       <h2 class="section-title">The <em>Comics</em></h2>
       <p class="section-desc">Hand-drawn digital comics. Generally absurdist or observational in tone. Click any strip to enlarge.</p>
     </div>
-
     <div class="comics-grid">
-      <div class="comic-card" onclick="openLightbox('images/prequels.png', 'Hero McHero &amp; Evil Villain')">
+      <div class="comic-card" onclick="openLightbox('images/prequels.png', 'Hero McHero & Evil Villain')">
         <img src="images/prequels.png" alt="Hero McHero and Evil Villain" />
-        <div class="comic-card-label">
-          <span class="series">Standalone</span>
-          Hero McHero &amp; Evil Villain
-        </div>
+        <div class="comic-card-label"><span class="series">Standalone</span>Hero McHero &amp; Evil Villain</div>
       </div>
-
       <div class="comic-card" onclick="openLightbox('images/tongue-master.png', 'Tongue Master Wins Over a Hater')">
         <img src="images/tongue-master.png" alt="Tongue Master" />
-        <div class="comic-card-label">
-          <span class="series">The Tongue Master Series</span>
-          Tongue Master Wins Over a Hater
-        </div>
+        <div class="comic-card-label"><span class="series">The Tongue Master Series</span>Tongue Master Wins Over a Hater</div>
       </div>
-
       <div class="comic-card" onclick="openLightbox('images/teeth-master.png', 'Teeth Master\'s Introduction')">
         <img src="images/teeth-master.png" alt="Teeth Master" />
-        <div class="comic-card-label">
-          <span class="series">The Tongue Master Series</span>
-          Teeth Master's Introduction
-        </div>
+        <div class="comic-card-label"><span class="series">The Tongue Master Series</span>Teeth Master's Introduction</div>
       </div>
-
       <div class="comic-card" onclick="openLightbox('images/thought-leader.png', 'Thought Leader')">
         <img src="images/thought-leader.png" alt="Thought Leader" />
-        <div class="comic-card-label">
-          <span class="series">Standalone</span>
-          Thought Leader
-        </div>
+        <div class="comic-card-label"><span class="series">Standalone</span>Thought Leader</div>
       </div>
-
-      <div class="comic-card" onclick="openLightbox('images/clowns.png', 'Clowns: Then &amp; Now')">
+      <div class="comic-card" onclick="openLightbox('images/clowns.png', 'Clowns: Then & Now')">
         <img src="images/clowns.png" alt="Clowns: Then and Now" />
-        <div class="comic-card-label">
-          <span class="series">Standalone</span>
-          Clowns: Then &amp; Now
-        </div>
+        <div class="comic-card-label"><span class="series">Standalone</span>Clowns: Then &amp; Now</div>
       </div>
     </div>
-
     <div class="ig-footer-strip">
       <div class="ig-footer-left">
         <div class="ig-handle">@ban.vault</div>
@@ -132,7 +108,6 @@
         <a class="btn btn-accent" href="https://www.instagram.com/ban.vault" target="_blank">See All Comics ↗</a>
       </div>
     </div>
-
     <footer>
       <span class="footer-name">Rhys Banerjee</span>
       <div class="footer-links">
@@ -149,45 +124,88 @@
     <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()" />
   </div>
 
-  <!-- ══ GAMES ══ -->
+  <!-- GAMES -->
   <section id="games" class="page">
     <div class="section-header">
       <p class="section-number">03 — Games</p>
       <h2 class="section-title">Interactive <em>Work</em></h2>
-      <p class="section-desc">Games built with care for mechanics, feel, and fun. Click through to play on Itch.io.</p>
+      <p class="section-desc">Games and interactive projects. Click through to play.</p>
     </div>
 
+    <!-- Vowel Mix -->
     <div class="game-layout">
-      <div>
-        <a href="https://riceban.itch.io/bowling-bash" target="_blank" class="game-thumb-link">
-          <div class="game-thumb-wrap">
-            <img src="images/bowling-bash.png" alt="Bowling Bash" class="game-thumb-img" />
-            <div class="game-thumb-overlay">
-              <span class="game-thumb-cta">▶ Play on Itch.io</span>
-            </div>
+      <a href="vowel-mix.html" class="game-thumb-link">
+        <div class="game-thumb-wrap game-thumb-placeholder">
+          <div class="game-thumb-placeholder-inner">
+            <span class="game-thumb-placeholder-title">Vowel Mix</span>
+            <span class="game-thumb-placeholder-sub">A · E · I · O · U · Y</span>
           </div>
-        </a>
+          <div class="game-thumb-overlay"><span class="game-thumb-cta">▶ Play Now</span></div>
+        </div>
+      </a>
+      <div class="game-info">
+        <p class="game-meta">Browser · Word Game · 2025</p>
+        <h3 class="game-name">Vowel Mix</h3>
+        <div class="tag-list">
+          <span class="tag">Word Game</span><span class="tag">Puzzle</span><span class="tag">Browser</span><span class="tag">React</span>
+        </div>
+        <p class="game-desc">A word puzzle proof-of-concept built in React. You're given a set of consonants. Form as many words as possible by filling in vowels. </p>
+        <div class="game-btn-row">
+          <a class="btn btn-accent" href="vowel-mix.html">Play Now ↗</a>
+          <a class="btn" href="https://github.com/Rhys-Banerjee/vowel-mix" target="_blank">GitHub ↗</a>
+        </div>
       </div>
+    </div>
+    
+    <div class="game-divider"></div>
 
+    <!-- Bowling Bash -->
+    <div class="game-layout">
+      <a href="https://riceban.itch.io/bowling-bash" target="_blank" class="game-thumb-link">
+        <div class="game-thumb-wrap">
+          <img src="images/bowling-bash.png" alt="Bowling Bash" class="game-thumb-img" />
+          <div class="game-thumb-overlay"><span class="game-thumb-cta">▶ Play on Itch.io</span></div>
+        </div>
+      </a>
       <div class="game-info">
         <p class="game-meta">Godot · Browser · 2024</p>
         <h3 class="game-name">Bowling Bash</h3>
         <div class="tag-list">
-          <span class="tag">Action</span>
-          <span class="tag">Arcade</span>
-          <span class="tag">Bowling</span>
-          <span class="tag">Godot</span>
-          <span class="tag">Browser</span>
+          <span class="tag">Action</span><span class="tag">Arcade</span><span class="tag">Bowling</span><span class="tag">Godot</span><span class="tag">Browser</span>
         </div>
-        <p class="game-desc">
-          A short, but fast-paced experimental project exploring physics-driven movement and arcade mechanics. Built in the Godot engine — I created all assets except for music and sfx.
-        </p>
-        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-          <a class="btn btn-accent" href="https://riceban.itch.io/bowling-bash" target="_blank">Open on Itch.io ↗</a>
-          <a class="btn" href="https://riceban.itch.io" target="_blank">More Games</a>
+        <p class="game-desc">A short, fast-paced experimental project exploring physics-driven movement and arcade mechanics. Built in Godot — I created all assets except music and sfx.</p>
+        <div class="game-btn-row">
+          <a class="btn btn-accent" href="https://riceban.itch.io/bowling-bash" target="_blank">Play on Itch.io ↗</a>
+          <a class="btn" href="https://github.com/Rhys-Banerjee/BowlingBash" target="_blank">GitHub ↗</a>
         </div>
       </div>
     </div>
+
+    <div class="game-divider"></div>
+
+    <!-- Red Dash Frenzy -->
+    <div class="game-layout">
+      <a href="https://riceban.itch.io/red-dash-frenzy" target="_blank" class="game-thumb-link">
+        <div class="game-thumb-wrap">
+          <img src="images/red-dash-frenzy.png" alt="Red Dash Frenzy" class="game-thumb-img" />
+          <div class="game-thumb-overlay"><span class="game-thumb-cta">▶ Play on Itch.io</span></div>
+        </div>
+      </a>
+      <div class="game-info">
+        <p class="game-meta">Godot · Browser · 2023</p>
+        <h3 class="game-name">Red Dash Frenzy</h3>
+        <div class="tag-list">
+          <span class="tag">Action</span><span class="tag">Arcade</span><span class="tag">Dash</span><span class="tag">Godot</span><span class="tag">Browser</span>
+        </div>
+        <p class="game-desc">My first game made in Godot. A fast-paced arcade experience.</p>
+        <div class="game-btn-row">
+          <a class="btn btn-accent" href="https://riceban.itch.io/red-dash-frenzy" target="_blank">Play on Itch.io ↗</a>
+          <a class="btn" href="https://github.com/Rhys-Banerjee/RedDashFrenzy" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+
+    
 
     <footer>
       <span class="footer-name">Rhys Banerjee</span>
@@ -199,14 +217,13 @@
     </footer>
   </section>
 
-  <!-- ══ PROFESSIONAL ══ -->
+  <!-- PROFESSIONAL -->
   <section id="professional" class="page">
     <div class="section-header">
       <p class="section-number">04 — Professional</p>
       <h2 class="section-title">Full-Stack <em>Engineer</em></h2>
       <p class="section-desc">React · TypeScript · AWS · Node.js</p>
     </div>
-
     <div class="pro-content">
       <div class="resume-strip">
         <div class="resume-strip-left">
@@ -214,7 +231,8 @@
           <p>Full work history, education, and certifications.</p>
         </div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-          <a class="btn btn-accent" href="https://www.linkedin.com/in/urjit-banerjee-83a901193/" target="_blank">LinkedIn ↗</a>
+          <a class="btn btn-accent" href="images/resume.pdf" download="RhysBanerjee_Resume.pdf">Download PDF ↓</a>
+          <a class="btn" href="https://www.linkedin.com/in/urjit-banerjee-83a901193/" target="_blank">LinkedIn ↗</a>
           <a class="btn" href="mailto:rhys.banerjee@gmail.com">Get In Touch ✉</a>
         </div>
       </div>
@@ -248,27 +266,18 @@
         <p class="exp-period">2020 — 2021 · Durham, NC</p>
         <ul class="exp-bullets">
           <li>DeFi blockchain research with the Duke CS+ team.</li>
-          <li>Software development for Duke OIT.</li>
+          <li>Software developer for Duke Office of Information Technology.</li>
         </ul>
       </div>
 
       <div class="skills-row">
         <h4>Skills &amp; Tools</h4>
         <div class="skills-tags">
-          <span class="skill-tag">TypeScript</span>
-          <span class="skill-tag">React</span>
-          <span class="skill-tag">Next.js</span>
-          <span class="skill-tag">Node.js</span>
-          <span class="skill-tag">GraphQL</span>
-          <span class="skill-tag">AWS Lambda</span>
-          <span class="skill-tag">DynamoDB</span>
-          <span class="skill-tag">AWS CDK</span>
-          <span class="skill-tag">API Gateway</span>
-          <span class="skill-tag">GitHub Actions</span>
-          <span class="skill-tag">Java</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">SQL</span>
-          <span class="skill-tag">Godot / GDScript</span>
+          <span class="skill-tag">TypeScript</span><span class="skill-tag">React</span><span class="skill-tag">Next.js</span>
+          <span class="skill-tag">Node.js</span><span class="skill-tag">GraphQL</span><span class="skill-tag">AWS Lambda</span>
+          <span class="skill-tag">DynamoDB</span><span class="skill-tag">AWS CDK</span><span class="skill-tag">API Gateway</span>
+          <span class="skill-tag">GitHub Actions</span><span class="skill-tag">Java</span><span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span><span class="skill-tag">Godot / GDScript</span>
           <span class="skill-tag">AWS Solutions Architect (Certified)</span>
         </div>
       </div>
@@ -286,7 +295,6 @@
         </a>
       </div>
     </div>
-
     <footer>
       <span class="footer-name">Rhys Banerjee</span>
       <div class="footer-links">
