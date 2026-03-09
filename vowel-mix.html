@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vowel Mix — Rhys Banerjee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --cream-dark: #EDE6D6;
+      --ink: #1A1510;
+      --ink-mid: #3D3228;
+      --accent: #8B2E0F;
+      --gold: #BF9456;
+      --rule: #C8B89A;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--cream);
+      color: var(--ink);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    /* Minimal nav matching main site */
+    .vm-nav {
+      border-bottom: 2px solid var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 62px;
+      background: var(--cream);
+    }
+    .vm-nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .vm-nav-logo span { color: var(--accent); font-style: italic; }
+    .vm-nav-back {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .vm-nav-back:hover { color: var(--accent); }
+
+    #root { min-height: calc(100vh - 62px); }
+
+    /* Override React component styles to match portfolio palette */
+    .vm-wrap {
+      min-height: calc(100vh - 62px);
+      display: flex;
+      flex-direction: column;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .vm-header {
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 2rem;
+    }
+    .vm-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .vm-header h1 em { font-style: italic; color: var(--accent); }
+    .vm-header p {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Difficulty buttons */
+    .vm-diff { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
+    .vm-diff-btn {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.4rem;
+      border: 2px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .vm-diff-btn.active { background: var(--ink); color: var(--cream); }
+
+    /* Consonant tiles */
+    .vm-tiles { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .vm-tile {
+      width: 3.5rem; height: 3.5rem;
+      background: var(--ink);
+      color: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      border: 2px solid var(--ink);
+    }
+
+    /* Score */
+    .vm-score {
+      display: inline-block;
+      background: var(--cream-dark);
+      border: 1px solid var(--rule);
+      padding: 0.8rem 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .vm-score-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .vm-score-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; }
+    .vm-score-sub { font-size: 0.8rem; color: var(--ink-mid); }
+
+    /* Input */
+    .vm-input-row { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
+    .vm-input {
+      flex: 1;
+      padding: 0.65rem 1rem;
+      border: 2px solid var(--ink);
+      background: var(--cream);
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+      outline: none;
+    }
+    .vm-input:focus { border-color: var(--accent); }
+    .vm-submit {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.5rem;
+      border: 2px solid var(--ink);
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--cream);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .vm-submit:hover { background: #6e2008; }
+
+    /* Message */
+    .vm-msg {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      min-height: 1.5rem;
+    }
+    .vm-msg.good { color: var(--accent); }
+    .vm-msg.pangram { color: var(--gold); }
+    .vm-msg.bad { color: var(--ink-mid); }
+
+    /* Toggle word list */
+    .vm-toggle {
+      background: none;
+      border: none;
+      font-family: 'EB Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-decoration: underline;
+      color: var(--ink-mid);
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+    }
+    .vm-toggle:hover { color: var(--accent); }
+
+    /* Word list */
+    .vm-wordlist {
+      background: var(--cream-dark);
+      border: 1px solid var(--rule);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .vm-wordlist-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Found words */
+    .vm-found-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .vm-found-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .vm-word-chip {
+      border: 1px solid var(--rule);
+      padding: 0.25rem 0.75rem;
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      background: var(--cream-dark);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .vm-word-chip.pangram {
+      border-color: var(--gold);
+      color: var(--ink);
+      background: #f5e9cb;
+    }
+    .vm-word-pts { font-size: 0.7rem; color: var(--rule); }
+
+    /* Instructions */
+    .vm-instructions {
+      border-top: 1px solid var(--rule);
+      padding: 1.5rem 0;
+      margin-top: auto;
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+    }
+    .vm-instructions h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+    .vm-instructions ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .vm-instructions li::before { content: '— '; color: var(--accent); }
+    .vm-scoring { margin-top: 0.75rem; font-size: 0.8rem; color: var(--ink-mid); }
+
+    /* Footer */
+    .vm-footer {
+      border-top: 2px solid var(--ink);
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      color: var(--ink-mid);
+      margin-top: 3rem;
+    }
+    .vm-footer a { color: var(--ink-mid); text-decoration: none; }
+    .vm-footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <nav class="vm-nav">
+    <a class="vm-nav-logo" href="index.html">Rhys <span>Banerjee</span></a>
+    <a class="vm-nav-back" href="index.html">← Back to Portfolio</a>
+  </nav>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    const easyConsonants = ['H', 'N', 'D'];
+    const hardConsonants = ['H', 'N', 'D', 'S'];
+
+    const easyWords = [
+      'ADD','ADDED','ADDY','AID','AIDED','AND','DAD','DADDY','DAN','DANDY',
+      'DEAD','DEADEN','DEADLY','DEED','DEN','DENIED','DID','DIDDY','DIE','DIED',
+      'DIN','DINE','DINED','DODO','DONE','DONNED','DUD','DUDE','DUE','DUNE',
+      'DUN','DYE','DYED','EDDY','END','ENDED','HAD','HAND','HANDED','HANDY',
+      'HEAD','HEADED','HEADY','HEN','HENNA','HEED','HEEDED','HID','HIDDEN','HIDE',
+      'HOD','HOE','HOED','HON','HONE','HONED','HONEY','HONEYED','HOOD','HOODED',
+      'HOUND','HOUNDED','HUE','HUED','HUN','NAE','NAH','NANA','NANNY','NAY',
+      'NEE','NEED','NEEDED','NEEDY','NOD','NODDED','NODDY','NODE','NON','NONE',
+      'NOON','NUN','ODD','ODE','ONE','UNDO','UNDID','UNDONE','UNHAND','YEA',
+      'YEN','YOD','YON','YOND','YOU'
+    ];
+
+    const hardWords = [
+      ...easyWords,
+      'AHS','ANDS','ASH','ASHEN','DADS','DASH','DASHED','DENS','DISH','DISHED',
+      'DISS','DOES','DONS','DOSE','DOSED','DUDS','DUDES','DUNES','DUNS','DYES',
+      'ENDS','HADES','HANDS','HAS','HEADS','HENS','HIDES','HIND','HINDS','HIS',
+      'HISS','HODS','HOES','HONES','HONS','HOODS','HOSED','HOUNDS','HUES','HUNS',
+      'INS','NAHS','NANAS','NAYS','NEEDS','NODS','NOISE','NOISED','NONES','NOONS',
+      'NOSE','NOSED','NOSY','NUNS','OHS','ONES','SAD','SADDEN','SAID','SAND',
+      'SANDED','SANDY','SANE','SEA','SEAS','SEDAN','SEND','SHADE','SHADED','SHADY',
+      'SHE','SHED','SHIN','SHINE','SHINED','SHINS','SHINY','SHOD','SHOE','SHOED',
+      'SHOES','SHONE','SHOO','SHOOED','SHY','SIDE','SIDED','SIN','SINE','SINNED',
+      'SINS','SNIDE','SNOOD','SON','SONS','SOUND','SOUNDED','SOY','SUN','SUNNED',
+      'SUNS','SUNDAE','SUDS','SYNOD','UNDOES','UNSAID','YEAS','YENS','YES','YODS'
+    ];
+
+    const VowelMix = () => {
+      const [input, setInput] = useState('');
+      const [foundWords, setFoundWords] = useState([]);
+      const [message, setMessage] = useState({ text: '', type: '' });
+      const [difficulty, setDifficulty] = useState('easy');
+      const [showWordList, setShowWordList] = useState(false);
+
+      const consonants = difficulty === 'easy' ? easyConsonants : hardConsonants;
+      const validWords = difficulty === 'easy' ? easyWords : hardWords;
+      const pangrams = validWords.filter(w => consonants.every(c => w.includes(c)));
+
+      const showMsg = (text, type) => {
+        setMessage({ text, type });
+        setTimeout(() => setMessage({ text: '', type: '' }), 2000);
+      };
+
+      const handleSubmit = () => {
+        const word = input.toUpperCase().trim();
+        if (word.length < 3) return showMsg('Words must be at least 3 letters', 'bad');
+        const wordConsonants = word.split('').filter(c => !'AEIOUY'.includes(c));
+        if (!wordConsonants.every(c => consonants.includes(c)))
+          return showMsg(`Only use consonants: ${consonants.join(', ')}`, 'bad');
+        if (!consonants.some(c => word.includes(c)))
+          return showMsg('Must use at least one consonant', 'bad');
+        if (foundWords.some(w => w.word === word))
+          return showMsg('Already found!', 'bad');
+        if (!validWords.includes(word))
+          return showMsg('Not in word list', 'bad');
+
+        const isPangram = pangrams.includes(word);
+        const pts = word.length === 3 ? 1 : word.length === 4 ? 2 : word.length;
+        const totalPts = pts + (isPangram ? 7 : 0);
+        setFoundWords(prev => [...prev, { word, isPangram, points: totalPts }]);
+        setInput('');
+        showMsg(isPangram ? '★ Pangram! +7 bonus' : 'Nice!', isPangram ? 'pangram' : 'good');
+      };
+
+      const totalPoints = foundWords.reduce((s, w) => s + w.points, 0);
+
+      return (
+        <div className="vm-wrap">
+          <div className="vm-header">
+            <h1>Vowel <em>Mix</em></h1>
+            <p>Word Puzzle · by Rhys Banerjee</p>
+          </div>
+
+          <div className="vm-diff">
+            <button className={`vm-diff-btn${difficulty === 'easy' ? ' active' : ''}`}
+              onClick={() => { setDifficulty('easy'); setFoundWords([]); setInput(''); }}>
+              Easy
+            </button>
+            <button className={`vm-diff-btn${difficulty === 'hard' ? ' active' : ''}`}
+              onClick={() => { setDifficulty('hard'); setFoundWords([]); setInput(''); }}>
+              Hard
+            </button>
+          </div>
+
+          <div className="vm-tiles">
+            {consonants.map((c, i) => <div key={i} className="vm-tile">{c}</div>)}
+          </div>
+
+          <div className="vm-score">
+            <div className="vm-score-label">Score</div>
+            <div className="vm-score-num">{totalPoints} <span style={{fontSize:'1rem',color:'var(--rule)'}}>pts</span></div>
+            <div className="vm-score-sub">{foundWords.length} of {validWords.length} words found</div>
+          </div>
+
+          <div className="vm-input-row">
+            <input
+              className="vm-input"
+              type="text"
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+              placeholder="Type a word..."
+              autoFocus
+            />
+            <button className="vm-submit" onClick={handleSubmit}>Submit</button>
+          </div>
+
+          <div className={`vm-msg${message.type ? ' ' + message.type : ''}`}>{message.text || '\u00A0'}</div>
+
+          <button className="vm-toggle" onClick={() => setShowWordList(s => !s)}>
+            {showWordList ? 'Hide' : 'Show'} all accepted words *if you want to cheat*
+          </button>
+
+          {showWordList && (
+            <div className="vm-wordlist">
+              <div className="vm-wordlist-title">All Accepted Words ({validWords.length})</div>
+              {validWords.map((w, i) => (
+                <span key={i}>
+                  {w}{pangrams.includes(w) ? <span style={{color:'var(--gold)'}}>★</span> : ''}
+                  {i < validWords.length - 1 ? ', ' : ''}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {foundWords.length > 0 && (
+            <div>
+              <div className="vm-found-title">Your Words ({foundWords.length})</div>
+              <div className="vm-found-list">
+                {foundWords.map((item, i) => (
+                  <div key={i} className={`vm-word-chip${item.isPangram ? ' pangram' : ''}`}>
+                    {item.word}
+                    {item.isPangram && <span style={{color:'var(--gold)'}}>★</span>}
+                    <span className="vm-word-pts">+{item.points}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="vm-instructions">
+            <h4>How to play</h4>
+            <ul>
+              <li>Create words using the given consonants and any vowels (A E I O U Y)</li>
+              <li>Words must be at least 3 letters long</li>
+              <li>You can repeat any letter as needed (e.g. DAD, DEED, NANNY)</li>
+              <li>Not every consonant needs to appear in each word</li>
+              <li>Pangrams ★ use all consonants and earn +7 bonus points</li>
+            </ul>
+            <div className="vm-scoring">
+              Scoring: 3 letters = 1 pt · 4 letters = 2 pts · 5+ letters = word length · Pangrams = +7 bonus
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<VowelMix />, document.getElementById('root'));
+  </script>
+
+  <footer class="vm-footer">
+    <span>Rhys Banerjee — Portfolio</span>
+    <a href="index.html">← Back to Games</a>
+  </footer>
+
+</body>
+</html>
